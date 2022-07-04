@@ -2,30 +2,26 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Learn React JS</title>
 </head>
 
 <body>
-	<div id="root">
-
-	</div>
-
+	<div id="root"></div>
 
 	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
 	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
+	<!-- Import BABEL -->
+	<script src="https://unpkg.com/@babel/standalone@7.18.7/babel.min.js"></script>
 
+	<script type="text/babel">
+		const root = document.getElementById("root");
+      console.log(root);
 
-
-
-
-	<script>
-		const root = document.getElementById('root');
-
-		/**
+      /**
 		// membuat element h1 dengan children dan className
 		const p1 = React.createElement('p', {
 			children: "Sincan Maulana"
@@ -43,6 +39,9 @@
 		// render element di root menggunakan ReactDM.render()
 		ReactDOM.render(element, root);
 		**/
+
+      // React Nested & Fragmet
+      /**
 		const listItem = React.createElement('li', {
 			children: "Apel"
 		});
@@ -60,7 +59,19 @@
 		}, [listItem, listItem2, listItem3]);
 
 		ReactDOM.render(unorderedList, root);
-	</script>
+		**/
+
+      //JSX & Babel
+      const element = (
+        <ul>
+          <li>Apel</li>
+		  <li>Jeruk</li>
+		  <li>Mangga</li>
+        </ul>
+      );
+
+      ReactDOM.render(element, root);
+    </script>
 </body>
 
 </html>
