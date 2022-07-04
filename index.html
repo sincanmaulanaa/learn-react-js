@@ -62,15 +62,19 @@
 		**/
 
       //JSX & Babel
-      const element = (
-        <ul>
-          <li>Apel</li>
-		  <li>Jeruk</li>
-		  <li>Mangga</li>
-        </ul>
-      );
+	  const name = 'Sincan Maulana';
+	  const className = 'heading';
+      const element = <h1 className={className}>Halo {name}</h1>;
+	  const style = {
+		width: 200,
+		padding: 20,
+		border: '1px solid black',
+		borderRadius: 5
+	  }
 
-      ReactDOM.render(element, root);
+	  const image = <img src="https://thumb.viva.co.id/media/frontend/thumbs3/2020/12/04/5fc9a4ab3d341-deteksi-gambar_665_374.jpg" style={style}/>;
+
+      ReactDOM.render(image, root);
     </script>
 </body>
 
