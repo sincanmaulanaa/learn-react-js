@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Learn React JS</title>
+</head>
+
+<body>
+	<div id="root">
+
+	</div>
+
+
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+
+
+
+
+
+	<script>
+		const root = document.getElementById('root');
+
+		// membuat element h1 dengan children dan className
+		const p1 = React.createElement('p', {
+			children: "Sincan Maulana"
+		});
+
+		const p2 = React.createElement('p', {
+			children: "Aldi Indra"
+		});
+
+		const element = React.createElement(React.Fragment, {
+			className: 'container',
+			children: [p1, p2]
+		});
+
+		// render element di root menggunakan ReactDM.render()
+		ReactDOM.render(element, root);
+	</script>
+</body>
+
+</html>
