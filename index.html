@@ -25,6 +25,7 @@
 	<script>
 		const root = document.getElementById('root');
 
+		/**
 		// membuat element h1 dengan children dan className
 		const p1 = React.createElement('p', {
 			children: "Sincan Maulana"
@@ -41,6 +42,24 @@
 
 		// render element di root menggunakan ReactDM.render()
 		ReactDOM.render(element, root);
+		**/
+		const listItem = React.createElement('li', {
+			children: "Apel"
+		});
+
+		const listItem2 = React.createElement('li', {
+			children: "Mangga"
+		});
+
+		const listItem3 = React.createElement('li', {
+			children: "Jeruk"
+		});
+
+		const unorderedList = React.createElement('ul', {
+			className: 'list'
+		}, [listItem, listItem2, listItem3]);
+
+		ReactDOM.render(unorderedList, root);
 	</script>
 </body>
 
