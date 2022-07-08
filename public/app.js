@@ -101,9 +101,18 @@ console.log(root);
 // );
 // ReactDOM.render(element, root);
 // external style
+// const className = "box";
+// const element = (
+//   <div className={className}>
+//     <h1>Halo sincan</h1>
+//   </div>
+// );
 
-const className = "box";
-const element = /*#__PURE__*/React.createElement("div", {
-  className: className
-}, /*#__PURE__*/React.createElement("h1", null, "Halo sincan"));
+function hmm(msg) {
+  alert(msg);
+}
+
+const element = /*#__PURE__*/React.createElement("button", {
+  onClick: hmm.bind(this, "halo")
+}, "Click Me");
 ReactDOM.render(element, root);
