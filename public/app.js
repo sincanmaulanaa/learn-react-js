@@ -73,12 +73,27 @@ console.log(root);
 	  ReactDOM.render(element, root)
 	  **/
 // Rendering
+// function tick() {
+//   const element = (
+//     <div>
+//       <h1>Jam skr</h1>
+//       <h2>{new Date().toLocaleTimeString()}</h2>
+//     </div>
+//   );
+//   ReactDOM.render(element, root);
+// }
+// setInterval(function () {
+//   tick();
+// }, 1000);
+// inline style
 
-function tick() {
-  const element = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Jam skr"), /*#__PURE__*/React.createElement("h2", null, new Date().toLocaleTimeString()));
-  ReactDOM.render(element, root);
-}
-
-setInterval(function () {
-  tick();
-}, 1000);
+const element = /*#__PURE__*/React.createElement("div", {
+  style: {
+    width: 200,
+    padding: 20,
+    border: "1px solid black",
+    borderRadius: 5,
+    height: 200
+  }
+}, /*#__PURE__*/React.createElement("h1", null, "Halo Sincan"));
+ReactDOM.render(element, root);

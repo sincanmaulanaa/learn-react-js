@@ -75,17 +75,34 @@ console.log(root);
 	  **/
 
 // Rendering
-function tick() {
-  const element = (
-    <div>
-      <h1>Jam skr</h1>
-      <h2>{new Date().toLocaleTimeString()}</h2>
-    </div>
-  );
+// function tick() {
+//   const element = (
+//     <div>
+//       <h1>Jam skr</h1>
+//       <h2>{new Date().toLocaleTimeString()}</h2>
+//     </div>
+//   );
 
-  ReactDOM.render(element, root);
-}
+//   ReactDOM.render(element, root);
+// }
 
-setInterval(function () {
-  tick();
-}, 1000);
+// setInterval(function () {
+//   tick();
+// }, 1000);
+
+// inline style
+const element = (
+  <div
+    style={{
+      width: 200,
+      padding: 20,
+      border: "1px solid black",
+      borderRadius: 5,
+      height: 200,
+    }}
+  >
+    <h1>Halo Sincan</h1>
+  </div>
+);
+
+ReactDOM.render(element, root);
