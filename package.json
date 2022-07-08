@@ -1,0 +1,18 @@
+{
+  "name": "learn-react-js",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/sincanmaulanaa/learn-react-js.git",
+  "author": "sincanmaulanaa <sincanmaulanaa@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/cli": "^7.18.6",
+    "@babel/core": "^7.18.6",
+    "@babel/preset-react": "^7.18.6",
+    "lite-server": "^2.6.1"
+  },
+  "scripts": {
+    "build": "babel src --out-dir public",
+    "start": "lite-server --baseDir public"
+  }
+}
