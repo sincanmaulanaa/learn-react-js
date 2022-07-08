@@ -78,7 +78,7 @@ console.log(root);
 function tick() {
   const element = (
     <div>
-      <h1>Jam Sekarang</h1>
+      <h1>Jam skr</h1>
       <h2>{new Date().toLocaleTimeString()}</h2>
     </div>
   );
