@@ -86,14 +86,24 @@ console.log(root);
 //   tick();
 // }, 1000);
 // inline style
+// const element = (
+//   <div
+//     style={{
+//       width: 200,
+//       padding: 20,
+//       border: "1px solid black",
+//       borderRadius: 5,
+//       height: 200,
+//     }}
+//   >
+//     <h1>Halo Sincan</h1>
+//   </div>
+// );
+// ReactDOM.render(element, root);
+// external style
 
+const className = "box";
 const element = /*#__PURE__*/React.createElement("div", {
-  style: {
-    width: 200,
-    padding: 20,
-    border: "1px solid black",
-    borderRadius: 5,
-    height: 200
-  }
-}, /*#__PURE__*/React.createElement("h1", null, "Halo Sincan"));
+  className: className
+}, /*#__PURE__*/React.createElement("h1", null, "Halo sincan"));
 ReactDOM.render(element, root);

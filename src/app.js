@@ -91,17 +91,27 @@ console.log(root);
 // }, 1000);
 
 // inline style
+// const element = (
+//   <div
+//     style={{
+//       width: 200,
+//       padding: 20,
+//       border: "1px solid black",
+//       borderRadius: 5,
+//       height: 200,
+//     }}
+//   >
+//     <h1>Halo Sincan</h1>
+//   </div>
+// );
+
+// ReactDOM.render(element, root);
+
+// external style
+const className = "box";
 const element = (
-  <div
-    style={{
-      width: 200,
-      padding: 20,
-      border: "1px solid black",
-      borderRadius: 5,
-      height: 200,
-    }}
-  >
-    <h1>Halo Sincan</h1>
+  <div className={className}>
+    <h1>Halo sincan</h1>
   </div>
 );
 
