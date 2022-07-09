@@ -115,10 +115,35 @@ console.log(root);
 //   </div>
 // );
 
-function hmm(msg) {
-  alert(msg);
-}
+// function hmm(msg) {
+//   alert(msg);
+// }
 
-const element = <button onClick={hmm.bind(this, "halo")}>Click Me</button>;
+// const element = <button onClick={hmm.bind(this, "halo")}>Click Me</button>;
 
-ReactDOM.render(element, root);
+// React state
+const App = () => {
+  const [count, setCount] = React.useState(0);
+
+  return (
+    <div>
+      <button
+        onClick={() => {
+          setCount(count - 1);
+        }}
+      >
+        -
+      </button>
+      <span>{count}</span>
+      <button
+        onClick={() => {
+          setCount(count + 1);
+        }}
+      >
+        +
+      </button>
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, root);
