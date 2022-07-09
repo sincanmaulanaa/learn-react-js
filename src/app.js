@@ -122,19 +122,53 @@ console.log(root);
 // const element = <button onClick={hmm.bind(this, "halo")}>Click Me</button>;
 
 // React state
+// const App = () => {
+//   const [count, setCount] = React.useState(0);
+
+//   return (
+//     <div>
+//       <button
+//         onClick={() => {
+//           setCount(count - 1);
+//         }}
+//       >
+//         -
+//       </button>
+//       <span>{count}</span>
+//       <button
+//         onClick={() => {
+//           setCount(count + 1);
+//         }}
+//       >
+//         +
+//       </button>
+//     </div>
+//   );
+// };
+
+// React Lifecycle
 const App = () => {
+  const [klik, setKlik] = React.useState(false);
   const [count, setCount] = React.useState(0);
+
+  React.useEffect(() => {
+    console.log(document.querySelector("h1"));
+  }, [count]);
 
   return (
     <div>
+      <h1>Ini judul</h1>
       <button
         onClick={() => {
-          setCount(count - 1);
+          setKlik(true);
+          console.log(klik);
         }}
       >
-        -
+        Klik disini
       </button>
-      <span>{count}</span>
+
+      <br />
+      <br />
       <button
         onClick={() => {
           setCount(count + 1);
@@ -142,6 +176,7 @@ const App = () => {
       >
         +
       </button>
+      <span>{count}</span>
     </div>
   );
 };

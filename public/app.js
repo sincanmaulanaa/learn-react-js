@@ -112,18 +112,46 @@ console.log(root);
 // }
 // const element = <button onClick={hmm.bind(this, "halo")}>Click Me</button>;
 // React state
+// const App = () => {
+//   const [count, setCount] = React.useState(0);
+//   return (
+//     <div>
+//       <button
+//         onClick={() => {
+//           setCount(count - 1);
+//         }}
+//       >
+//         -
+//       </button>
+//       <span>{count}</span>
+//       <button
+//         onClick={() => {
+//           setCount(count + 1);
+//         }}
+//       >
+//         +
+//       </button>
+//     </div>
+//   );
+// };
+// React Lifecycle
 
 const App = () => {
+  const [klik, setKlik] = React.useState(false);
   const [count, setCount] = React.useState(0);
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+  React.useEffect(() => {
+    console.log(document.querySelector("h1"));
+  }, [count]);
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Ini judul"), /*#__PURE__*/React.createElement("button", {
     onClick: () => {
-      setCount(count - 1);
+      setKlik(true);
+      console.log(klik);
     }
-  }, "-"), /*#__PURE__*/React.createElement("span", null, count), /*#__PURE__*/React.createElement("button", {
+  }, "Klik disini"), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("button", {
     onClick: () => {
       setCount(count + 1);
     }
-  }, "+"));
+  }, "+"), /*#__PURE__*/React.createElement("span", null, count));
 };
 
 ReactDOM.render( /*#__PURE__*/React.createElement(App, null), root);
