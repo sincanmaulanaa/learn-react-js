@@ -141,7 +141,7 @@ const App = () => {
   const [count, setCount] = React.useState(0);
   React.useEffect(() => {
     console.log(document.querySelector("h1"));
-  }, [count]);
+  }, []);
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Ini judul"), /*#__PURE__*/React.createElement("button", {
     onClick: () => {
       setKlik(true);

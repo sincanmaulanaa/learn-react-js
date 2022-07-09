@@ -153,7 +153,7 @@ const App = () => {
 
   React.useEffect(() => {
     console.log(document.querySelector("h1"));
-  }, [count]);
+  }, []);
 
   return (
     <div>
