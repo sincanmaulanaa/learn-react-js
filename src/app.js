@@ -185,30 +185,17 @@ console.log(root);
 
 function App() {
   const [login, setLogin] = React.useState(false);
-  if (login) {
-    return (
-      <div>
-        <h1>Udah login ya</h1>
-        <button
-          onClick={() => {
-            setLogin(false);
-          }}
-        >
-          Logout gih
-        </button>
-      </div>
-    );
-  }
 
   return (
     <div>
-      <h1>Login ya</h1>
+      <h1>Aplikasi</h1>
+      <p>{login && "Saya sudah login"}</p>
       <button
         onClick={() => {
           setLogin(true);
         }}
       >
-        Login yuk
+        {login ? "Logout gih" : "login"}
       </button>
     </div>
   );

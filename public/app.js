@@ -169,20 +169,11 @@ console.log(root);
 
 function App() {
   const [login, setLogin] = React.useState(false);
-
-  if (login) {
-    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Udah login ya"), /*#__PURE__*/React.createElement("button", {
-      onClick: () => {
-        setLogin(false);
-      }
-    }, "Logout gih"));
-  }
-
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Login ya"), /*#__PURE__*/React.createElement("button", {
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Aplikasi"), /*#__PURE__*/React.createElement("p", null, login && "Saya sudah login"), /*#__PURE__*/React.createElement("button", {
     onClick: () => {
       setLogin(true);
     }
-  }, "Login yuk"));
+  }, login ? "Logout gih" : "login"));
 }
 
 ReactDOM.render( /*#__PURE__*/React.createElement(App, null), root);
