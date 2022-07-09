@@ -220,16 +220,46 @@ console.log(root);
 // };
 
 // list
-const App = () => {
-  const fruits = ["Apple", "Orange", "Grape", "Lengkeng"];
+// const App = () => {
+//   const fruits = ["Apple", "Orange", "Grape", "Lengkeng"];
+
+//   return (
+//     <ul>
+//       {fruits.map((fruit) => (
+//         <li key={fruit}>{fruit}</li>
+//       ))}
+//     </ul>
+//   );
+// };
+
+// form
+function App() {
+  const namaRef = React.useRef(null);
+  const umurRef = React.useRef(null);
+
+  const submitted = (event) => {
+    event.preventDefault();
+
+    const nama = namaRef.current.value;
+    const umur = umurRef.current.value;
+    console.log("Nama: ", nama);
+    console.log("Umur: ", umur);
+  };
 
   return (
-    <ul>
-      {fruits.map((fruit) => (
-        <li key={fruit}>{fruit}</li>
-      ))}
-    </ul>
+    <form onSubmit={submitted}>
+      <div>
+        <label htmlFor="name">Nama: </label>
+        <input type="text" id="name" ref={namaRef} />
+      </div>
+      <br />
+      <div>
+        <label htmlFor="umur">Umur: </label>
+        <input type="text" id="umur" ref={umurRef} />
+      </div>
+      <br />
+      <button type="submit">Kirim</button>
+    </form>
   );
-};
-
+}
 ReactDOM.render(<App />, root);

@@ -199,12 +199,47 @@ console.log(root);
 //   );
 // };
 // list
+// const App = () => {
+//   const fruits = ["Apple", "Orange", "Grape", "Lengkeng"];
+//   return (
+//     <ul>
+//       {fruits.map((fruit) => (
+//         <li key={fruit}>{fruit}</li>
+//       ))}
+//     </ul>
+//   );
+// };
+// form
 
-const App = () => {
-  const fruits = ["Apple", "Orange", "Grape", "Lengkeng"];
-  return /*#__PURE__*/React.createElement("ul", null, fruits.map(fruit => /*#__PURE__*/React.createElement("li", {
-    key: fruit
-  }, fruit)));
-};
+function App() {
+  const namaRef = React.useRef(null);
+  const umurRef = React.useRef(null);
+
+  const submitted = event => {
+    event.preventDefault();
+    const nama = namaRef.current.value;
+    const umur = umurRef.current.value;
+    console.log("Nama: ", nama);
+    console.log("Umur: ", umur);
+  };
+
+  return /*#__PURE__*/React.createElement("form", {
+    onSubmit: submitted
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
+    htmlFor: "name"
+  }, "Nama: "), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    id: "name",
+    ref: namaRef
+  })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
+    htmlFor: "umur"
+  }, "Umur: "), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    id: "umur",
+    ref: umurRef
+  })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("button", {
+    type: "submit"
+  }, "Kirim"));
+}
 
 ReactDOM.render( /*#__PURE__*/React.createElement(App, null), root);
