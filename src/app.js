@@ -182,23 +182,41 @@ console.log(root);
 // };
 
 // conditional rendering
+// function App() {
+//   const [login, setLogin] = React.useState(false);
 
-function App() {
+//   return (
+//     <div>
+//       <h1>Aplikasi</h1>
+//       <p>{login && "Saya sudah login"}</p>
+//       <button
+//         onClick={() => {
+//           setLogin(true);
+//         }}
+//       >
+//         {login ? "Logout gih" : "login"}
+//       </button>
+//     </div>
+//   );
+// }
+
+// DOM manipulation
+const App = () => {
   const [login, setLogin] = React.useState(false);
+  const judulRef = React.useRef(null);
+  console.log(judulRef);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      judulRef.current.textContent = "Sudah Login";
+    }, 2000);
+  });
 
   return (
     <div>
-      <h1>Aplikasi</h1>
-      <p>{login && "Saya sudah login"}</p>
-      <button
-        onClick={() => {
-          setLogin(true);
-        }}
-      >
-        {login ? "Logout gih" : "login"}
-      </button>
+      <h1 ref={judulRef}>Belum Login</h1>
     </div>
   );
-}
+};
 
 ReactDOM.render(<App />, root);
