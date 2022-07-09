@@ -147,38 +147,71 @@ console.log(root);
 // };
 
 // React Lifecycle
-const App = () => {
-  const [klik, setKlik] = React.useState(false);
-  const [count, setCount] = React.useState(0);
+// const App = () => {
+//   const [klik, setKlik] = React.useState(false);
+//   const [count, setCount] = React.useState(0);
 
-  React.useEffect(() => {
-    console.log(document.querySelector("h1"));
-  }, []);
+//   React.useEffect(() => {
+//     console.log(document.querySelector("h1"));
+//   }, []);
+
+//   return (
+//     <div>
+//       <h1>Ini judul</h1>
+//       <button
+//         onClick={() => {
+//           setKlik(true);
+//           console.log(klik);
+//         }}
+//       >
+//         Klik disini
+//       </button>
+
+//       <br />
+//       <br />
+//       <button
+//         onClick={() => {
+//           setCount(count + 1);
+//         }}
+//       >
+//         +
+//       </button>
+//       <span>{count}</span>
+//     </div>
+//   );
+// };
+
+// conditional rendering
+
+function App() {
+  const [login, setLogin] = React.useState(false);
+  if (login) {
+    return (
+      <div>
+        <h1>Udah login ya</h1>
+        <button
+          onClick={() => {
+            setLogin(false);
+          }}
+        >
+          Logout gih
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div>
-      <h1>Ini judul</h1>
+      <h1>Login ya</h1>
       <button
         onClick={() => {
-          setKlik(true);
-          console.log(klik);
+          setLogin(true);
         }}
       >
-        Klik disini
+        Login yuk
       </button>
-
-      <br />
-      <br />
-      <button
-        onClick={() => {
-          setCount(count + 1);
-        }}
-      >
-        +
-      </button>
-      <span>{count}</span>
     </div>
   );
-};
+}
 
 ReactDOM.render(<App />, root);

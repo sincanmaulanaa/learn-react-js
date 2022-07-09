@@ -135,23 +135,54 @@ console.log(root);
 //   );
 // };
 // React Lifecycle
+// const App = () => {
+//   const [klik, setKlik] = React.useState(false);
+//   const [count, setCount] = React.useState(0);
+//   React.useEffect(() => {
+//     console.log(document.querySelector("h1"));
+//   }, []);
+//   return (
+//     <div>
+//       <h1>Ini judul</h1>
+//       <button
+//         onClick={() => {
+//           setKlik(true);
+//           console.log(klik);
+//         }}
+//       >
+//         Klik disini
+//       </button>
+//       <br />
+//       <br />
+//       <button
+//         onClick={() => {
+//           setCount(count + 1);
+//         }}
+//       >
+//         +
+//       </button>
+//       <span>{count}</span>
+//     </div>
+//   );
+// };
+// conditional rendering
 
-const App = () => {
-  const [klik, setKlik] = React.useState(false);
-  const [count, setCount] = React.useState(0);
-  React.useEffect(() => {
-    console.log(document.querySelector("h1"));
-  }, []);
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Ini judul"), /*#__PURE__*/React.createElement("button", {
+function App() {
+  const [login, setLogin] = React.useState(false);
+
+  if (login) {
+    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Udah login ya"), /*#__PURE__*/React.createElement("button", {
+      onClick: () => {
+        setLogin(false);
+      }
+    }, "Logout gih"));
+  }
+
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Login ya"), /*#__PURE__*/React.createElement("button", {
     onClick: () => {
-      setKlik(true);
-      console.log(klik);
+      setLogin(true);
     }
-  }, "Klik disini"), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("button", {
-    onClick: () => {
-      setCount(count + 1);
-    }
-  }, "+"), /*#__PURE__*/React.createElement("span", null, count));
-};
+  }, "Login yuk"));
+}
 
 ReactDOM.render( /*#__PURE__*/React.createElement(App, null), root);
