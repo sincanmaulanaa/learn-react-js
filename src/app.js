@@ -201,21 +201,34 @@ console.log(root);
 // }
 
 // DOM manipulation
-const App = () => {
-  const [login, setLogin] = React.useState(false);
-  const judulRef = React.useRef(null);
-  console.log(judulRef);
+// const App = () => {
+//   const [login, setLogin] = React.useState(false);
+//   const judulRef = React.useRef(null);
+//   console.log(judulRef);
 
-  React.useEffect(() => {
-    setTimeout(() => {
-      judulRef.current.textContent = "Sudah Login";
-    }, 2000);
-  });
+//   React.useEffect(() => {
+//     setTimeout(() => {
+//       judulRef.current.textContent = "Sudah Login";
+//     }, 2000);
+//   });
+
+//   return (
+//     <div>
+//       <h1 ref={judulRef}>Belum Login</h1>
+//     </div>
+//   );
+// };
+
+// list
+const App = () => {
+  const fruits = ["Apple", "Orange", "Grape", "Lengkeng"];
 
   return (
-    <div>
-      <h1 ref={judulRef}>Belum Login</h1>
-    </div>
+    <ul>
+      {fruits.map((fruit) => (
+        <li key={fruit}>{fruit}</li>
+      ))}
+    </ul>
   );
 };
 

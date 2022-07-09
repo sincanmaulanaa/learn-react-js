@@ -183,19 +183,28 @@ console.log(root);
 //   );
 // }
 // DOM manipulation
+// const App = () => {
+//   const [login, setLogin] = React.useState(false);
+//   const judulRef = React.useRef(null);
+//   console.log(judulRef);
+//   React.useEffect(() => {
+//     setTimeout(() => {
+//       judulRef.current.textContent = "Sudah Login";
+//     }, 2000);
+//   });
+//   return (
+//     <div>
+//       <h1 ref={judulRef}>Belum Login</h1>
+//     </div>
+//   );
+// };
+// list
 
 const App = () => {
-  const [login, setLogin] = React.useState(false);
-  const judulRef = React.useRef(null);
-  console.log(judulRef);
-  React.useEffect(() => {
-    setTimeout(() => {
-      judulRef.current.textContent = "Sudah Login";
-    }, 2000);
-  });
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", {
-    ref: judulRef
-  }, "Belum Login"));
+  const fruits = ["Apple", "Orange", "Grape", "Lengkeng"];
+  return /*#__PURE__*/React.createElement("ul", null, fruits.map(fruit => /*#__PURE__*/React.createElement("li", {
+    key: fruit
+  }, fruit)));
 };
 
 ReactDOM.render( /*#__PURE__*/React.createElement(App, null), root);
