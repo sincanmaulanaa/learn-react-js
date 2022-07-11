@@ -345,48 +345,83 @@ const root = document.getElementById("root");
 // };
 
 // data fetching with UI synchronization
+// const App = () => {
+//   const [news, setNews] = React.useState([]);
+//   const [loading, setLoading] = React.useState(true);
+
+//   React.useEffect(function () {
+//     async function getData() {
+//       const request = await fetch(
+//         "https://api.spaceflightnewsapi.net/v3/blogs"
+//       );
+//       const response = await request.json();
+
+//       setNews(response);
+//       setLoading(false);
+//     }
+//     getData();
+//   });
+
+//   const imageStyle = {
+//     width: 200,
+//     height: 200,
+//     borderRadius: 20,
+//   };
+
+//   return (
+//     <div>
+//       <h1>Data Fetching</h1>
+//       {loading ? (
+//         <i>Loading data...</i>
+//       ) : (
+//         <div>
+//           {news.map((item) => {
+//             console.log(item);
+//             return (
+//               <div>
+//                 <h3 key={item.id}>{item.title}</h3>
+//                 <img src={item.imageUrl} alt={item.title} style={imageStyle} />
+//                 <p>{item.newsSite}</p>
+//               </div>
+//             );
+//           })}
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// create Todo List App
 const App = () => {
-  const [news, setNews] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
+  const [activity, setActivity] = React.useState("");
+  const [todos, setTodos] = React.useState([]);
 
-  React.useEffect(function () {
-    async function getData() {
-      const request = await fetch(
-        "https://api.spaceflightnewsapi.net/v3/blogs"
-      );
-      const response = await request.json();
+  const addTodoHandler = (event) => {
+    event.preventDefault();
 
-      setNews(response);
-      setLoading(false);
-    }
-    getData();
-  });
-
-  const imageStyle = {
-    width: 200,
-    height: 200,
-    borderRadius: 20,
+    setTodos([...todos, activity]);
+    setActivity("");
   };
 
   return (
     <div>
-      <h1>Data Fetching</h1>
-      {loading ? (
-        <i>Loading data...</i>
-      ) : (
-        <div>
-          {news.map((item) => {
-            console.log(item);
-            return (
-              <div>
-                <h3 key={item.id}>{item.title}</h3>
-                <img src={item.imageUrl} alt={item.title} style={imageStyle} />
-                <p>{item.newsSite}</p>
-              </div>
-            );
-          })}
-        </div>
-      )}
+      <h1>Simple Todo List</h1>
+      <form onSubmit={addTodoHandler}>
+        <input
+          type="text"
+          placeholder="Nama aktivitas"
+          value={activity}
+          onChange={function (event) {
+            setActivity(event.target.value);
+          }}
+        />
+        <button type="submit">Tambah</button>
+      </form>
+      <ul>
+        {todos.map((todo) => {
+          return <li key={todo}>{todo}</li>;
+        })}
+      </ul>
     </div>
   );
 };
