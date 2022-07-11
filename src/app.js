@@ -1,6 +1,6 @@
-const root = document.getElementById("root");
-console.log(root);
+import Navigation from "./components/Navigation.js";
 
+const root = document.getElementById("root");
 /**
 		// membuat element h1 dengan children dan className
 		const p1 = React.createElement('p', {
@@ -264,30 +264,84 @@ console.log(root);
 // }
 
 // form with control component
+// const App = () => {
+//   const [name, setName] = React.useState("");
+//   const kirim = "kirim";
+
+//   const submitted = (event) => {
+//     event.preventDefault();
+//     console.log("Nama: ", name);
+//   };
+
+//   return (
+//     <div>
+//       <Navigation />
+//       <form onSubmit={submitted}>
+//         <div>
+//           <label htmlFor="name">Name: </label>
+//           <input
+//             type="text"
+//             id="name"
+//             value={name}
+//             onChange={(event) => {
+//               setName(event.target.value);
+//             }}
+//           />
+//         </div>
+//         <br />
+//         <button type="submit">{kirim}</button>
+//       </form>
+//     </div>
+//   );
+// };
+
+// Data fetching
+// const App = () => {
+//   React.useEffect(function () {
+//     async function getData() {
+//       const request = await fetch(
+//         "https://jadwal-shalat-api.herokuapp.com/cities"
+//       );
+//       console.log(request);
+
+//       const response = await request.json();
+//       console.log(response);
+//     }
+
+//     getData();
+//   }, []);
+//   return <h1>data fetching</h1>;
+// };
+
+// const App = () => {
+//   React.useEffect(function () {
+//     async function getData() {
+//       const request = await fetch(
+//         "https://jadwal-shalat-api.herokuapp.com/cities"
+//       );
+//       console.log(request);
+//       const response = await request.json();
+//       console.log(response);
+//     }
+
+//     getData();
+//   });
+// };
+
 const App = () => {
-  const [name, setName] = React.useState("");
+  React.useEffect(function () {
+    async function getData() {
+      const request = await fetch(
+        "https://jadwal-shalat-api.herokuapp.com/cities"
+      );
+      console.log(request);
 
-  const submitted = (event) => {
-    event.preventDefault();
-    console.log("Nama: ", name);
-  };
+      const response = await request.json();
+      console.log(response);
+    }
 
-  return (
-    <form onSubmit={submitted}>
-      <div>
-        <label htmlFor="name">Name: </label>
-        <input
-          type="text"
-          id="name"
-          value={name}
-          onChange={(event) => {
-            setName(event.target.value);
-          }}
-        />
-      </div>
-      <br />
-      <button type="submit">Kirim</button>
-    </form>
-  );
+    getData();
+  });
 };
+
 ReactDOM.render(<App />, root);
