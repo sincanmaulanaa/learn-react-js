@@ -293,18 +293,49 @@ const root = document.getElementById("root");
 //     getData();
 //   });
 // };
+// const App = () => {
+//   React.useEffect(function () {
+//     async function getData() {
+//       const request = await fetch(
+//         "https://jadwal-shalat-api.herokuapp.com/cities"
+//       );
+//       console.log(request);
+//       const response = await request.json();
+//       console.log(response);
+//     }
+//     getData();
+//   });
+// };
+// data fetching with UI synchronization
 
 const App = () => {
+  const [news, setNews] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
   React.useEffect(function () {
     async function getData() {
-      const request = await fetch("https://jadwal-shalat-api.herokuapp.com/cities");
-      console.log(request);
+      const request = await fetch("https://api.spaceflightnewsapi.net/v3/blogs");
       const response = await request.json();
-      console.log(response);
+      setNews(response);
+      setLoading(false);
     }
 
     getData();
   });
+  const imageStyle = {
+    width: 200,
+    height: 200,
+    borderRadius: 20
+  };
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Data Fetching"), loading ? /*#__PURE__*/React.createElement("i", null, "Loading data...") : /*#__PURE__*/React.createElement("div", null, news.map(item => {
+    console.log(item);
+    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h3", {
+      key: item.id
+    }, item.title), /*#__PURE__*/React.createElement("img", {
+      src: item.imageUrl,
+      alt: item.title,
+      style: imageStyle
+    }), /*#__PURE__*/React.createElement("p", null, item.newsSite));
+  })));
 };
 
 ReactDOM.render( /*#__PURE__*/React.createElement(App, null), root);
