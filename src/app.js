@@ -413,6 +413,14 @@ const App = () => {
     setActivity("");
   };
 
+  function removeTodoHandler(todoId) {
+    const filteredTodos = todos.filter(function (todo) {
+      return todo.id !== todoId;
+    });
+
+    setTodos(filteredTodos);
+  }
+
   return (
     <div>
       <h1>Simple Todo List</h1>
@@ -429,7 +437,14 @@ const App = () => {
       </form>
       <ul>
         {todos.map((todo) => {
-          return <li key={todo.id}>{todo.activity}</li>;
+          return (
+            <li key={todo.id}>
+              {todo.activity}
+              <button onClick={removeTodoHandler.bind(this, todo.id)}>
+                Hapus
+              </button>
+            </li>
+          );
         })}
       </ul>
     </div>

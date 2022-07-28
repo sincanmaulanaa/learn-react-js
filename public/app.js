@@ -367,6 +367,13 @@ const App = () => {
     setActivity("");
   };
 
+  function removeTodoHandler(todoId) {
+    const filteredTodos = todos.filter(function (todo) {
+      return todo.id !== todoId;
+    });
+    setTodos(filteredTodos);
+  }
+
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Simple Todo List"), /*#__PURE__*/React.createElement("form", {
     onSubmit: addTodoHandler
   }, /*#__PURE__*/React.createElement("input", {
@@ -381,7 +388,9 @@ const App = () => {
   }, "Tambah")), /*#__PURE__*/React.createElement("ul", null, todos.map(todo => {
     return /*#__PURE__*/React.createElement("li", {
       key: todo.id
-    }, todo.activity);
+    }, todo.activity, /*#__PURE__*/React.createElement("button", {
+      onClick: removeTodoHandler.bind(this, todo.id)
+    }, "Hapus"));
   })));
 };
 
