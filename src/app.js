@@ -395,19 +395,43 @@ const root = document.getElementById("root");
 const App = () => {
   const [activity, setActivity] = React.useState("");
   const [todos, setTodos] = React.useState([]);
+  const [edit, setEdit] = React.useState({});
 
   function generateId() {
     return Date.now();
   }
 
-  const addTodoHandler = (event) => {
+  function editTodoHandler(todo) {
+    setActivity(todo.activity);
+    setEdit(todo);
+  }
+
+  const saveTodoHandler = (event) => {
     event.preventDefault();
+
+    if (edit.id) {
+      const updatedTodo = {
+        id: edit.id,
+        activity,
+      };
+
+      const editTodoIndex = todos.findIndex(function (todo) {
+        return todo.id == edit.id;
+      });
+
+      const updatedTodos = [...todos];
+      updatedTodos[editTodoIndex] = updatedTodo;
+
+      setTodos(updatedTodos);
+
+      return;
+    }
 
     setTodos([
       ...todos,
       {
         id: generateId(),
-        activity: activity,
+        activity,
       },
     ]);
     setActivity("");
@@ -424,7 +448,7 @@ const App = () => {
   return (
     <div>
       <h1>Simple Todo List</h1>
-      <form onSubmit={addTodoHandler}>
+      <form onSubmit={saveTodoHandler}>
         <input
           type="text"
           placeholder="Nama aktivitas"
@@ -433,13 +457,14 @@ const App = () => {
             setActivity(event.target.value);
           }}
         />
-        <button type="submit">Tambah</button>
+        <button type="submit">{edit.id ? "Simpan perubahan" : "Tambah"}</button>
       </form>
       <ul>
         {todos.map((todo) => {
           return (
             <li key={todo.id}>
               {todo.activity}
+              <button onClick={editTodoHandler.bind(this, todo)}>Edit</button>
               <button onClick={removeTodoHandler.bind(this, todo.id)}>
                 Hapus
               </button>

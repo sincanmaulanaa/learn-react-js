@@ -353,16 +353,37 @@ const root = document.getElementById("root");
 const App = () => {
   const [activity, setActivity] = React.useState("");
   const [todos, setTodos] = React.useState([]);
+  const [edit, setEdit] = React.useState({});
 
   function generateId() {
     return Date.now();
   }
 
-  const addTodoHandler = event => {
+  function editTodoHandler(todo) {
+    setActivity(todo.activity);
+    setEdit(todo);
+  }
+
+  const saveTodoHandler = event => {
     event.preventDefault();
+
+    if (edit.id) {
+      const updatedTodo = {
+        id: edit.id,
+        activity
+      };
+      const editTodoIndex = todos.findIndex(function (todo) {
+        return todo.id == edit.id;
+      });
+      const updatedTodos = [...todos];
+      updatedTodos[editTodoIndex] = updatedTodo;
+      setTodos(updatedTodos);
+      return;
+    }
+
     setTodos([...todos, {
       id: generateId(),
-      activity: activity
+      activity
     }]);
     setActivity("");
   };
@@ -375,7 +396,7 @@ const App = () => {
   }
 
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Simple Todo List"), /*#__PURE__*/React.createElement("form", {
-    onSubmit: addTodoHandler
+    onSubmit: saveTodoHandler
   }, /*#__PURE__*/React.createElement("input", {
     type: "text",
     placeholder: "Nama aktivitas",
@@ -385,10 +406,12 @@ const App = () => {
     }
   }), /*#__PURE__*/React.createElement("button", {
     type: "submit"
-  }, "Tambah")), /*#__PURE__*/React.createElement("ul", null, todos.map(todo => {
+  }, edit.id ? "Simpan perubahan" : "Tambah")), /*#__PURE__*/React.createElement("ul", null, todos.map(todo => {
     return /*#__PURE__*/React.createElement("li", {
       key: todo.id
     }, todo.activity, /*#__PURE__*/React.createElement("button", {
+      onClick: editTodoHandler.bind(this, todo)
+    }, "Edit"), /*#__PURE__*/React.createElement("button", {
       onClick: removeTodoHandler.bind(this, todo.id)
     }, "Hapus"));
   })));
