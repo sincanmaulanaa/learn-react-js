@@ -354,6 +354,7 @@ const App = () => {
   const [activity, setActivity] = React.useState("");
   const [todos, setTodos] = React.useState([]);
   const [edit, setEdit] = React.useState({});
+  const [message, setMessage] = React.useState("");
 
   function generateId() {
     return Date.now();
@@ -367,6 +368,10 @@ const App = () => {
   const saveTodoHandler = event => {
     event.preventDefault();
 
+    if (!activity) {
+      return setMessage("Isi dong!");
+    }
+
     if (edit.id) {
       const updatedTodo = {
         id: edit.id,
@@ -378,13 +383,14 @@ const App = () => {
       const updatedTodos = [...todos];
       updatedTodos[editTodoIndex] = updatedTodo;
       setTodos(updatedTodos);
-      return;
+      return cancelEditHandler();
     }
 
     setTodos([...todos, {
       id: generateId(),
       activity
     }]);
+    setMessage("");
     setActivity("");
   };
 
@@ -393,9 +399,19 @@ const App = () => {
       return todo.id !== todoId;
     });
     setTodos(filteredTodos);
+    if (edit.id) cancelEditHandler();
   }
 
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Simple Todo List"), /*#__PURE__*/React.createElement("form", {
+  function cancelEditHandler() {
+    setEdit({});
+    setActivity("");
+  }
+
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Simple Todo List"), message && /*#__PURE__*/React.createElement("div", {
+    style: {
+      color: "red"
+    }
+  }, message), /*#__PURE__*/React.createElement("form", {
     onSubmit: saveTodoHandler
   }, /*#__PURE__*/React.createElement("input", {
     type: "text",
@@ -406,7 +422,9 @@ const App = () => {
     }
   }), /*#__PURE__*/React.createElement("button", {
     type: "submit"
-  }, edit.id ? "Simpan perubahan" : "Tambah")), /*#__PURE__*/React.createElement("ul", null, todos.map(todo => {
+  }, edit.id ? "Simpan perubahan" : "Tambah"), edit.id && /*#__PURE__*/React.createElement("button", {
+    onClick: cancelEditHandler
+  }, "Batal")), todos.length > 0 ? /*#__PURE__*/React.createElement("ul", null, todos.map(todo => {
     return /*#__PURE__*/React.createElement("li", {
       key: todo.id
     }, todo.activity, /*#__PURE__*/React.createElement("button", {
@@ -414,7 +432,7 @@ const App = () => {
     }, "Edit"), /*#__PURE__*/React.createElement("button", {
       onClick: removeTodoHandler.bind(this, todo.id)
     }, "Hapus"));
-  })));
+  })) : /*#__PURE__*/React.createElement("i", null, "Tidak ada todo"));
 };
 
 ReactDOM.render( /*#__PURE__*/React.createElement(App, null), root);

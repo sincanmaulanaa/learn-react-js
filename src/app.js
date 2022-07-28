@@ -396,6 +396,7 @@ const App = () => {
   const [activity, setActivity] = React.useState("");
   const [todos, setTodos] = React.useState([]);
   const [edit, setEdit] = React.useState({});
+  const [message, setMessage] = React.useState("");
 
   function generateId() {
     return Date.now();
@@ -408,6 +409,10 @@ const App = () => {
 
   const saveTodoHandler = (event) => {
     event.preventDefault();
+
+    if (!activity) {
+      return setMessage("Isi dong!");
+    }
 
     if (edit.id) {
       const updatedTodo = {
@@ -424,7 +429,7 @@ const App = () => {
 
       setTodos(updatedTodos);
 
-      return;
+      return cancelEditHandler();
     }
 
     setTodos([
@@ -434,6 +439,7 @@ const App = () => {
         activity,
       },
     ]);
+    setMessage("");
     setActivity("");
   };
 
@@ -443,11 +449,18 @@ const App = () => {
     });
 
     setTodos(filteredTodos);
+    if (edit.id) cancelEditHandler();
+  }
+
+  function cancelEditHandler() {
+    setEdit({});
+    setActivity("");
   }
 
   return (
     <div>
       <h1>Simple Todo List</h1>
+      {message && <div style={{ color: "red" }}>{message}</div>}
       <form onSubmit={saveTodoHandler}>
         <input
           type="text"
@@ -458,20 +471,25 @@ const App = () => {
           }}
         />
         <button type="submit">{edit.id ? "Simpan perubahan" : "Tambah"}</button>
+        {edit.id && <button onClick={cancelEditHandler}>Batal</button>}
       </form>
-      <ul>
-        {todos.map((todo) => {
-          return (
-            <li key={todo.id}>
-              {todo.activity}
-              <button onClick={editTodoHandler.bind(this, todo)}>Edit</button>
-              <button onClick={removeTodoHandler.bind(this, todo.id)}>
-                Hapus
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+      {todos.length > 0 ? (
+        <ul>
+          {todos.map((todo) => {
+            return (
+              <li key={todo.id}>
+                {todo.activity}
+                <button onClick={editTodoHandler.bind(this, todo)}>Edit</button>
+                <button onClick={removeTodoHandler.bind(this, todo.id)}>
+                  Hapus
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <i>Tidak ada todo</i>
+      )}
     </div>
   );
 };
